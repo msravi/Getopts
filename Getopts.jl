@@ -21,7 +21,7 @@ function getcuntil(instr, startidx=1, mchars=" \t")
 end
 
 function getopts(instr::AbstractString)
-  opts = Dict()
+  opts = Dict{AbstractString,Array{AbstractString,1}}()
   argv = Array{AbstractString,1}()
   idx = start(instr)
   while !done(instr, idx)
