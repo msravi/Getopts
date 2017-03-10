@@ -30,7 +30,7 @@ Whitespaces are used as delimiters and redundant whitespaces have no effect.
 ```
 julia> using Getopts
 
-julia> opts, argv=getopts("myprog -date 20170201 sym1  sym2   -date 2017-03-03 sym3 --blah bah -π 3.14  -μ   -car")
+julia> opts, argv = getopts("myprog -date 20170201 sym1 sym2 -date 2017-03-03 sym3 --blah bah -π 3.14 -μ -car")
 
 julia> opts
 Dict{AbstractString,Array{AbstractString,1}} with 5 entries:
