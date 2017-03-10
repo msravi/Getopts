@@ -4,7 +4,7 @@
 The getopts() function accepts a string or a list of strings to be parsed for options/arguments and outputs a dictionary
 of key/value pairs where the keys are option names and the value of each key is an associated list of option arguments.
 
-If the input is a list(vector) of strings, the strings are concatenated with whitespace characters and parsed as a single string. 
+If the input is a list(vector) of strings, the strings are concatenated with whitespace delimiters and parsed as a single string. 
 Orphaned arguments (arguments without an associated option) are also returned as an additional list.
 
 An option name begins with a '-', and may or may not have an argument associated with it. Multiple arguments may
