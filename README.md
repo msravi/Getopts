@@ -8,7 +8,7 @@ If the input is a list(vector) of strings, the strings are concatenated with whi
 Orphaned arguments (arguments without an associated option) are also returned as an additional list.
 
 An option name begins with a '-', and may or may not have an argument associated with it. Multiple arguments may
-also be associated with a single argument by repeating the option name.
+also be associated with a single option by repeating the option name.
 ```
 -date 20170101 -skip -date 2017-01-02
 ```
