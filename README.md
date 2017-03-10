@@ -5,7 +5,8 @@ The getopts() function accepts a string or a list of strings to be parsed for op
 of key/value pairs where the keys are option names and the value of each key is an associated list of option arguments.
 
 If the input is a list(vector) of strings, the strings are concatenated with whitespace delimiters and parsed as a single string. 
-Orphaned arguments (arguments without an associated option) are also returned as an additional list.
+Thus, the ARGS parameter containing command line arguments can be passed directly into getopts(). Orphaned arguments 
+(arguments without an associated option) are also returned as an additional list.
 
 An option name begins with a '-', and may or may not have an argument associated with it. Multiple arguments may
 also be associated with a single option by repeating the option name.
