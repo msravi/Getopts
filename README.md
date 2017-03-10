@@ -8,13 +8,13 @@ If the input is a list(vector) of strings, the strings are concatenated with whi
 Thus, the ARGS parameter containing command line arguments can be passed directly into getopts(). Orphaned arguments 
 (arguments without an associated option) are also returned as an additional list.
 
-An option name begins with a '-', and may or may not have an argument associated with it. Multiple arguments may
+An option name begins with a `'-'`, and may or may not have an argument associated with it. Multiple arguments may
 also be associated with a single option by repeating the option name.
 ```
 -date 20170101 -skip -date 2017-01-02
 ```
-In the opt/arg list above, a single option (-date) has two arguments (20170101 and 2017-01-02) associated with it.
-The -skip option does not have an argument. Options with no arguments are returned as part of the options-arguments 
+In the opt/arg list above, a single option (`-date`) has two arguments (`20170101` and `2017-01-02`) associated with it.
+The `-skip` option does not have an argument. Options with no arguments are returned as part of the options-arguments 
 dictionary, with an empty string as the argument.
 
 An argument only associates with an immediate preceding option name. Arguments that are not immediately preceded
