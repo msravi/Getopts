@@ -32,7 +32,7 @@ julia> using Getopts
 julia> opts, argv=getopts("myprog -date 20170201 sym1  sym2   -date 2017-03-03 sym3 --blah bah -π 3.14  -μ   -car")
 
 julia> opts
-Dict{Any,Any} with 5 entries:
+Dict{AbstractString,Array{AbstractString,1}} with 5 entries:
   "--blah" => AbstractString["bah"]
   "-car"   => AbstractString[""]
   "-date"  => AbstractString["20170201","2017-03-03"]
