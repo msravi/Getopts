@@ -43,11 +43,7 @@ function getopts(instr::AbstractString)
   opts, argv
 end
 
-function getopts(inarray::Array{AbstractString,1})
-  getopts(foldl(string,map(x->string(" ",x),inarray)))
-end
-
-function getopts(inarray::Array{String,1})
+function getopts{S<:AbstractString}(inarray::AbstractArray{S,1})
   getopts(foldl(string,map(x->string(" ",x),inarray)))
 end
 
