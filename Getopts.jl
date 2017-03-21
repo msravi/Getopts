@@ -46,10 +46,12 @@ starts with a character specified in uchars. Also return index
 of first character following consumed characters in string.
 """
 function getcuntilunless(instr, startidx=1, mchars=" \t", uchars="-")
-  outstr, idx = done(instr, startidx) || 
-                (instr[startidx] in uchars) ? ("", startidx) : 
-                                              getcuntil(instr, startidx, " \t")
+  idx = skipcwhile(instr, startidx, mchars)
+  outstr, idx = done(instr, idx) || (instr[idx] in uchars) ? ("", idx) : getcuntil(instr, idx, " \t")
 end
+
+getopt = getcuntil
+getarg = getcuntilunless
 
 function getopts(instr::AbstractString)
   opts = Dict{AbstractString,Array{AbstractString,1}}()
@@ -57,16 +59,14 @@ function getopts(instr::AbstractString)
   idx = start(instr)
   while !done(instr, idx)
     while true
-      idx = skipcwhile(instr, idx, " \t")
-      arg, idx = getcuntilunless(instr, idx, " \t", "-")
+      arg, idx = getarg(instr, idx, " \t", "-")
       arg != "" && push!(argv, arg)
       (arg == "" || done(instr, idx)) && break
     end
     if !done(instr, idx)
-      key, idx = getcuntil(instr, idx, " \t")
+      key, idx = getopt(instr, idx, " \t")
       !(key in keys(opts)) && (opts[key] = Array{AbstractString,1}())
-      idx = skipcwhile(instr, idx, " \t")
-      val, idx = getcuntilunless(instr, idx, " \t", "-")
+      val, idx = getarg(instr, idx, " \t", "-")
       push!(opts[key], val)
     end
   end
