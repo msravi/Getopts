@@ -27,7 +27,8 @@ function getopts(instr::AbstractString)
   while !done(instr, idx)
     while true
       idx = skipcwhile(instr, idx, " \t")
-      arg, idx = getcuntil(instr, idx, " -\t")
+      arg, idx = done(instr, idx) || instr[idx] == '-' ? ("", idx) : 
+                                                         getcuntil(instr, idx, " \t")
       arg != "" && push!(argv, arg)
       (arg == "" || done(instr, idx)) && break
     end
