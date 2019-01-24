@@ -2,6 +2,8 @@ module Getopts
 
 export getopts
 
+done(instr, idx) = iterate(instr, idx)===nothing
+
 """
 ```
 function skipcwhile(instr, startidx=1, mchars=" \\t")
@@ -13,7 +15,7 @@ in string.
 function skipcwhile(instr, startidx=1, mchars=" \t")
   idx = startidx
   while !done(instr, idx) && instr[idx] in mchars
-    idx = next(instr, idx)[2]
+    idx = iterate(instr, idx)[2]
   end
   idx
 end
@@ -31,7 +33,7 @@ function getcuntil(instr, startidx=1, mchars=" \t")
   outstr = ""
   while !done(instr, idx) && !(instr[idx] in mchars)
     outstr = string(outstr, instr[idx])
-    idx = next(instr, idx)[2]
+    idx = iterate(instr, idx)[2]
   end
   outstr, idx
 end
@@ -56,7 +58,7 @@ getarg = getcuntilunless
 function getopts(instr::AbstractString)
   opts = Dict{AbstractString,Array{AbstractString,1}}()
   argv = Array{AbstractString,1}()
-  idx = start(instr)
+  idx = 1
   while !done(instr, idx)
     while true
       arg, idx = getarg(instr, idx, " \t", "-")
@@ -73,7 +75,7 @@ function getopts(instr::AbstractString)
   opts, argv
 end
 
-function getopts{S<:AbstractString}(inarray::AbstractArray{S,1})
+function getopts(inarray::AbstractArray{S,1}) where S<:AbstractString
   getopts(foldl(string,map(x->string(" ",x),inarray)))
 end
 
